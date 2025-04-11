@@ -1,0 +1,108 @@
+html,body{
+    background-color: #D4C9BE;
+    padding: 0;
+    border:0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+}
+header{
+    margin-left: 0;
+    height: 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: #123458;
+}
+.logo{
+    margin-left: 1.3rem;
+    text-decoration: none;
+    color:#D4C9BE;
+}
+.links{
+    margin-right: 2rem;
+    font-size:18px;
+}
+header a{
+    text-decoration: none !important;
+    color:#D4C9BE;
+    padding-right: 1rem;
+    margin-top: 1.4rem;
+    transition: color 0.2s ease;
+}
+.links a:hover{
+    color:#f1ede9;
+}
+.login{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    height: 40px;
+    margin-bottom: 0.46rem;
+    margin-right:2rem;
+    width:120px;
+    font-weight: bold;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+    background-color: #D4C9BE;
+    border-radius: 21px;
+    font-size:16px;
+    letter-spacing: 1px;
+    color:#123458;
+    transition: all 0.3s ease;
+    border:none;
+    outline:none;
+    box-shadow: 4px 4px 6px #f1efec80;
+}
+.login:hover{
+background-color: #F1EFEC;
+color:#204164;
+box-shadow:none;
+}
+.intro{
+    margin-left: 1.6rem;
+}
+.intro h2{
+    margin-top: 9rem; 
+    letter-spacing: 1px;
+    font-size:34px;
+    line-height: 50px;
+}
+.intro p{
+    word-spacing: 2px;
+    line-height: 1.5rem;
+}
+.intro button{
+    border:none;
+    box-shadow: 4px 4px 6px #00000036;
+    background-color:#c0af9c;
+    color:#123458;
+    height: 2.6rem;
+    width: 9rem;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size:16px;
+    border-radius:20px;
+    transition: all 0.4s ease;
+    margin-left: 2rem;
+}
+.intro button:hover{
+    box-shadow: none;
+    background-color: #bdac9b;
+    color:#204164;
+    margin-bottom: 0.7rem;
+    }
+.intro img{
+    z-index: 1;
+    position: absolute;
+    right: 2.5rem;
+    margin-top: -16.4rem;
+    border-radius: 13rem;
+    border:#c0af9c thin solid;
+}
+.intro p{
+    margin-left: 2rem;
+}

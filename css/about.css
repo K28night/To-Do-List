@@ -1,0 +1,33 @@
+.intro img{
+    margin-top: -1rem;
+}
+.intro button{
+    margin-top: 1.6rem;
+    margin-left: 4rem;
+}
+.intro{
+    width:94%;
+}
+.intro span:first-child{/*to select first child span*/
+    margin-left: 2rem;
+}
+/* .intro span:last-child{
+    margin-right:2rem;
+} */
+.intro span{
+    line-height: 2rem;
+}
+.section-2{
+    position:fixed;
+    margin-left:1.9rem;
+}
+.section-2 ul{
+    list-style: none;
+    line-height: 2rem;
+}
+.section-2 h2{
+    margin-top: 2rem;
+}
+.intro button:hover{
+    margin-bottom: 0;
+    }

@@ -1,0 +1,156 @@
+body{
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+}
+.form-heading{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    color:#030303;
+    letter-spacing: 2px;
+}
+.form{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width:330px;
+    height:459px;
+    position: absolute;
+    left:37%;
+    background-color: #F1EFEC;
+    border-radius: 14%;  
+}
+
+input[type="text"]{
+    margin-top: 2rem;
+}
+input{
+height: 1.5rem;
+border:0;
+border:#123458 thin solid;
+background-color: #F1EFEC;
+outline: none;
+font-size: 15px;
+height:30px;
+width:200px;
+border-radius: 10px;
+}
+input::placeholder{
+    padding-left: 16px;
+    margin-bottom: 20px;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+    letter-spacing: 1px;
+}
+textarea::placeholder{
+    padding-left: 16px;
+    padding-top: 5px;
+}
+textarea{
+    /* margin-bottom: 2rem; */
+    height:100px;
+    width:240px;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+    resize:none;/*user canot change the size of textarea*/
+    outline: none;
+    font-size: 15px;
+    border:0;
+    border-radius: 10px;
+    background-color: #F1EFEC;
+    border:#030303 thin solid;
+}
+
+input[type="date"]{
+    background-color: #F1EFEC;
+
+    width:192px;
+    font-size: 15px;
+    border:#030303 thin solid;
+}
+input[type="submit"]{
+    background-color: #e4d2c1;
+    height: 40px;
+    letter-spacing: 1px;
+    padding:1.6rem;
+    font-style: normal;
+    width:192px;
+    margin-left: 37px;
+    border-radius:20px;
+}
+input[type="submit"]:hover{
+    background-color: #d1b39b;
+}
+#task_name{
+     position: absolute;
+     margin-top: 3rem;
+     left:11%
+}
+#task_dis{
+    position: absolute;
+    margin-top: 7.8rem;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+    left:11%
+}
+#tname{
+    position: absolute;
+    top: 18%;
+    margin-left: 0;
+    left:12%
+}
+#dis{
+    position: absolute;
+    top: 49%;
+    margin-left: 0;
+    left: 13%;
+
+}
+select{
+    position: absolute;
+    margin-top: 14.5rem;
+    left: 12%;
+    top:0%;
+    outline: none;
+    border: none;
+    background-color: #F1EFEC;
+    border-radius: 9px;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+    width: 240px;
+    font-size: 15px;
+    border: #030303 thin solid;
+    height: 44px;
+}
+#pri{
+    position: absolute;
+    top: 65%;
+    margin-left: 0;
+    left: 12%;
+}
+#shedu{
+    position: absolute;
+    top: 83%;
+    margin-left: 0;
+    left: 13%;
+}
+#shedule{
+    position: absolute;
+    top: 70%;
+    margin-left: 0;
+    left: 12%;
+}
+#form{
+    height: 479px;
+}
+#submit{
+    position: absolute;
+    position: absolute;
+    margin-top: 24rem;
+    left: 3%;
+    width: 130px;
+}
+small{
+    margin-left:0;
+}
+#date{}

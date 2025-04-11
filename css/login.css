@@ -1,0 +1,109 @@
+
+.form-heading{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    color:#030303;
+    letter-spacing: 2px;
+}
+.form{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width:330px;
+    height:459px;
+    position: absolute;
+    left:37%;
+    background-color: #F1EFEC;
+    border-radius: 14%;  
+}
+
+input[type="text"]{
+    margin-top: 1rem;
+}
+input{
+height: 1.5rem;
+border:0;
+margin-left: 2rem;
+border:#123458 thin solid;
+background-color: #F1EFEC;
+outline: none;
+font-size: 15px;
+height:30px;
+width:200px;
+border-radius: 10px;
+}
+#password{
+    padding: 0.6rem;
+    margin-top: 1rem;
+    width: 225px;
+}
+input::placeholder{
+    padding-left: 16px;
+    margin-bottom: 20px;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+    letter-spacing: 1px;
+}
+textarea::placeholder{
+    padding-left: 16px;
+    padding-top: 5px;
+}
+textarea{
+    /* margin-bottom: 2rem; */
+    height:100px;
+    width:240px;
+    font-family: "Andada Pro", serif;
+    letter-spacing: 1px;
+    font-optical-sizing: auto;
+    resize:none;/*user canot change the size of textarea*/
+    outline: none;
+    font-size: 15px;
+    border:0;
+    border-radius: 10px;
+    background-color: #F1EFEC;
+    border:#030303 thin solid;
+}
+
+input[type="date"]{
+    background-color: #F1EFEC;
+    width:192px;
+    font-size: 15px;
+    border:#030303 thin solid;
+}
+input[type="submit"]{
+    background-color: #e4d2c1;
+    height: 40px;
+    letter-spacing: 1px;
+    width: 122px;
+    font-style: normal;
+    margin-left: 6.4rem;
+    margin-top: 1.6rem;
+    border-radius:20px;
+}
+input[type="submit"]:hover{
+    background-color: #d1b39b;
+}
+
+.form{
+    position: absolute;
+    top: 28%;
+    width: 330px;
+    height: 349px;
+}
+.form h2{
+    color:#123458;
+    margin-top: 0.4rem;
+    margin-left: 7rem;
+}
+input[type="text"],input[type="email"]{
+    height:0;
+    padding: 1.6em;
+}
+input::placeholder{
+    padding-left: 0px;
+    padding-top: 5px;
+}
+form p{
+    margin-left: 3rem;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/add_task.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2>To-Do List</h2>
+        </div>
+        <div class="links">
+            <a href="index.html">Home</a> 
+            <a href="about.html">About</a>
+            <a href="./welcome.html">dashboard</a>
+             <a id="logout" onclick="sessionclear()">Logout</a></div>
+        </div>
+
+            <!-- <button class="login" onclick="window.location.href='login.html'" id="login">Login</button> -->
+    </header>
+    <div class="form-heading">
+        <h2>Task Time! Add a New One</h2></div>
+        <div class="form">
+            
+            <form action="add_task.html" method="GET" id="form">
+                
+                <small id="message"></small>
+                <input type="text" name="task_name" placeholder="Task Name" id="task_name" required>
+                <small id="tname">Enter task name</small>
+                <textarea name="task_dis" id="task_dis" placeholder="Task Discription" rows="6" cols="0" required></textarea>
+                <small id="dis">Enter task name</small>
+                <select name="priority" id="priority" required>
+                    <option value="" selected>Select a Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <small id="pri">Select your priority</small>
+                <input type="datetime-local" id="shedule" name="shedule" title="Task Shedule" min="2025-04-01"><br>
+                <small id="shedu">Select a shedule,  Optional!</small>
+                <input type="submit" name="submit" id="submit" value="Submit">
+            </form>
+        </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('#submit').click(function() {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    let name = $('#task_name').val();
+    let dis = $('#task_dis').val();
+    let pri = $('#priority').val();
+    let dateTime = $('#shedule').val();
+    let time=""
+    let date=""
+    if(dateTime){
+        date=dateTime.split('T')[0];
+        time=dateTime.split('T')[1];//from the local-datetime date format is YYYY-mm-ddTHH:MM
+    }
+    var storedUser = sessionStorage.getItem("user");
+    var user = JSON.parse(storedUser);
+    if (user) {
+    var taskData = {
+        email:user.email,
+        name: name,
+        discription: dis,
+        priority: pri,
+        date:date,
+        time:time,
+        status:'pending'
+    };
+    tasks.push(taskData);
+    
+    localStorage.setItem("tasks", JSON.stringify(tasks)); 
+    $('#message').addClass('success');
+    $('#message').text('Task Registration Success');
+    window.location.href='welcome.html'}
+});
+function sessionclear(){
+        sessionStorage.clear();
+        location.href='./index.html'
+    }
+    // document.getElementById("submit").addEventListener("click",()=>{
+    //    let name=(document.getElementById('task_name'))?document.getElementById('task_name').value:'';
+    //    let discription=(document.getElementById('task_dis'))?document.getElementById('task_dis').value:'';
+    //    let datetime=(document.getElementById('shedule'))?document.getElementById('shedule').value:'';
+    //    const currentdate=new Date()
+    //    let current=currentdate.toISOString().slice(0,16);//to convert the datetime to ISO 8601 format(YYYY-MM-DDTHH:mm:ss.sssZ)year-month-day-hours:minits:seconds.3-digit milliseconds.time is in UTC
+    //    //  example  2025-04-01T10:30:45.123Z
+    //    if(current>datetime){
+    //     let msg=document.getElementById('message')
+    //     msg.text('Date not to be in past');
+    //     msg.css('color','red');
+    //    }
+    // });
+</script>
+</html>

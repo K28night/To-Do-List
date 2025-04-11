@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/welcome.css">
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2>To-Do List</h2>
+        </div>
+        <div class="links">
+            <a href="index.html">Home</a> 
+            <a href="about.html">About</a>
+            <a id="logout" onclick="sessionclear()">Logout</a></div>
+            <!-- <button class="login" onclick="window.location.href='login.html'" id="login">Login</button> -->
+    </header>
+    <div class="user"> <span id="Login_name">Loading...</span></div>
+    <div class="sections">
+        <div class="section-2">
+            <p>Your Total tasks<br><span id="ttask">5</span></p>
+        </div>
+        <div class="section-1">
+            <p>Your pending tasks<br><span id="pending"></span></p>
+        </div>
+        <div class="section-2">
+            <p>Your completed tasks<br><span id="completed"></span></p>
+        </div>
+        
+    </div>
+    <div class="list-tasks">
+    <div class="search">
+        <form action="welcome.html">
+            <input type="text" name="tname" class="taskname" id="taskname" placeholder="Task name">
+            <input type="date" name="date">
+            <button title="Fillter your tasks"><i class="fas fa-search" style="color:#123458"></i></button>
+        </form>
+        <button id="add_task" onclick="location.href='./add_task.html'">Add Tasks</button>
+        <div class="task-list">
+       
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+     var storedUser = sessionStorage.getItem("user");
+var user = JSON.parse(storedUser);
+
+if (user) {
+    $('#Login_name').text('Hello ' + user.name);
+} else {
+    $('#Login_name').text('Hello Guest');
+}
+
+var usertasks = localStorage.getItem("tasks");
+tasks = JSON.parse(usertasks) || []; 
+var userTasks = [];
+let comtask=0;
+let pentask=0;
+
+tasks.forEach(function(task) {
+    if (task.email == user.email) {
+        userTasks.push(task);
+    }
+});
+userTasks.forEach(function(task){
+    if(task.status=='completed'){
+        comtask=comtask+1;
+     
+    }
+    if(task.status=='pending'){
+        pentask=pentask+1;
+       
+    }
+})
+//set numbers of  tasks
+$('#completed').text(comtask);
+$('#pending').text(pentask);
+
+var taskListHTML = '';
+$('#ttask').text(userTasks.length)
+
+if (userTasks.length > 0) {
+    userTasks.forEach(function(task, index) {
+    taskListHTML += '<div class="tasks"><span id="name">';
+    taskListHTML += '<p id="task" class="task">';
+    taskListHTML += task.name + '</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="time">' + task.priority + '</span>';
+    
+    const checkedClass = task.status === 'completed' ? 'checked' : '';
+    taskListHTML += `<div id="status" class="status ${checkedClass}" data-index="${index}"></div></p>`;
+    taskListHTML += '</div>';
+    
+});
+
+    $('.task-list').html(taskListHTML); 
+} else {
+
+    $('.task-list').html('<h2 id="tasks">You have no tasks added</h2><button onclick="window.location.href=\'./add_task.html\'">Add Your Task</button>');
+    $('#add_task').css('display','none')
+   
+}
+$('.status').click(function () {
+    $(this).toggleClass('checked');//toggle buttons
+
+  
+    const index = $(this).data('index');
+
+   
+    if ($(this).hasClass('checked')) {
+        userTasks[index].status = 'completed';
+        comtask=comtask+1;
+        pentask=pentask-1;
+    } else {
+        userTasks[index].status = 'pending';
+        pentask=pentask+1;
+        comtask=comtask-1;
+    }
+
+    let allTasks = JSON.parse(localStorage.getItem("tasks")) || [];//fetch all tasks 
+    allTasks = allTasks.map(task => {
+        if (task.email === user.email && task.name === userTasks[index].name) {//filters usertasks with main tasks
+            return userTasks[index]; // Replace with updated task
+        }
+        return task;
+    });
+
+  
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
+    $('#completed').text(comtask);
+$('#pending').text(pentask)
+});
+
+//logout
+function sessionclear(){
+    sessionStorage.clear();
+    location.href='./index.html'
+
+//search
+$('#taskname').input(function () {
+        let keyword = $(this).val().toLowerCase();
+$('#login').text('ytjytj')
+        $('.task-list .tasks').each(function () {
+            let taskText = $(this).find('.task').text().toLowerCase();
+
+            if (taskText.includes(keyword)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+});
+});
+
+// }    document.getElementById("submit").addEventListener("click",()=>{
+//        let name=(document.getElementById('username'))?document.getElementById('username').value:'';
+//        let discription=(document.getElementById('task_dis'))?document.getElementById('task_dis').value:'';
+//        let datetime=(document.getElementById('pass'))?document.getElementById('pass').value:'';
+//        const currentdate=new Date()
+//        let current=currentdate.toISOString().slice(0,16);//to convert the datetime to ISO 8601 format(YYYY-MM-DDTHH:mm:ss.sssZ)year-month-day-hours:minits:seconds.3-digit milliseconds.time is in UTC
+//        //  example  2025-04-01T10:30:45.123Z
+//        if(current>datetime){
+//         let msg=document.getElementById('message')
+//         msg.text('Date not to be in past');
+//         msg.css('color','red');
+//        }
+//     });
+    }
+</script>
+</html>

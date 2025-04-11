@@ -1,0 +1,147 @@
+.sections{
+    display: flex;
+    position: absolute;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 661px;
+    height: 80px;
+    background-color: none;
+    gap: 10px;
+    left: 4rem;
+    top: 10rem;
+    flex-direction:row;
+}
+.user{
+    font-size:24px;
+    margin-top: 2rem;
+    margin-left: 4rem;
+}
+.section-1{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 69px;
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+}
+.section-2{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 213px;
+    height: 69px;
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+}
+span{
+    margin-left: 4rem;
+    line-height: 2rem;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto
+}
+.list-tasks{
+    width: 62rem;
+    min-height: 26rem;
+    position: absolute;
+    border-radius: 2rem;
+    top: 16rem;
+    left: 10rem;
+    background-color:#F1EFEC;
+}
+.search{
+        margin-top: 2rem;
+    margin-left: 2rem;
+}
+form{
+    margin-left: 15rem;
+}
+input{
+    border:none;
+    outline:none;
+    padding: 1rem;
+    border-radius: 25px;
+    border: 1px solid #D4C9BE;
+}
+button{
+    border: none;
+    outline:none;
+    padding:1rem;
+    background-color: #D4C9BE;
+    border-radius: 26px;
+}
+.tasks {
+    width: 56rem;
+    height: 6rem;
+    background-color: #D4C9BE;
+    margin-left: 1rem;
+    margin-top: 1.6rem;
+    border-radius: 2rem;
+    position: relative; 
+    transition: transform 0.5s ease;
+}
+p { 
+    padding: 1.6rem;
+}
+.tasks:hover {
+    transform: translateY(-10px);
+}
+#date{
+margin-left:6rem;
+}
+#time{
+    margin-left: 6rem;
+}
+.fa-xmark {
+    color: rgb(223, 75, 75);
+    position: absolute; 
+    font-size: 18px;
+    margin-top: 8px;
+    left: 92%; 
+    
+}
+
+.fa-check {
+    color: green;
+    font-size: 18px;
+    position: absolute;
+    margin-top: 8px;
+    left: 82%; 
+   
+}
+#logout{
+    cursor: pointer;
+}
+.status {
+    width: 20px;
+    height: 20px;
+    background-color: #f3f0d2;
+    border-radius: 17px;
+    position: absolute;
+    top: 37px;
+    left: 49rem;
+    cursor: pointer;
+    border: 2px solid #F1EFEC;
+    transition: transform 0.5s ease;
+}
+
+/* Checked state styling */
+.status.checked {
+    background-color: #28a745; /* Green when checked */
+   
+}
+
+/* Show checkmark only when checked */
+.status.checked::after {
+    content: "";
+    position: absolute;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Check_icon.svg/1024px-Check_icon.svg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+#task{
+    margin-top: -31px;
+    padding: 1.96rem
+}
