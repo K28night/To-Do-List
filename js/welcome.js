@@ -1,7 +1,7 @@
  //search
  $('.taskname').on('input', function () {
     let keyword = $(this).val().toLowerCase();
-
+    
     $('.task-list .tasks').each(function () {//select each task in list
       let taskText = $(this).find('.task').text().toLowerCase();
 
@@ -12,8 +12,19 @@
       }
     });
   }); 
-
-     var storedUser = sessionStorage.getItem("user");
+$('.taskdate').on("input",function(){
+    let date=$(this).val();
+    $('.task-list .tasks').each(function(){
+        let taskdate=$(this).find('.task').text()
+        if(taskdate.includes(date)){
+            $(this).show();
+        }
+        else{
+            $(this).hide();
+        }
+    });
+});
+var storedUser = sessionStorage.getItem("user");
 var user = JSON.parse(storedUser);
 
 if (user) {

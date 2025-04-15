@@ -58,7 +58,7 @@ for (var i = 0; i < users.length; i++) {
 }
 
         if (foundUser) {
-            $("#login").text("Login successful! " + foundUser.email).css("color", "green");
+            $("#login").text("Login successful! ").css("color", "green");
 
             var sessionUser = {
                 name: foundUser.name,
@@ -71,7 +71,7 @@ for (var i = 0; i < users.length; i++) {
                 window.location.href = './welcome.html';
             }, 1000); // 1 second delay
         } else {
-            $("#login").text("Invalid email or password."+storedUser).css("color", "red");
+            $("#login").text("Invalid email or password.").css("color", "red");
         }
     } else {
         $("#login").text("No user found. Please register first.").css("color", "red");

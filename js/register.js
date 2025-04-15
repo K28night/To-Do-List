@@ -24,10 +24,10 @@ $('#username').on('input',()=>{
  $('#name').on('input',()=>{
   let name=$('#name').val();
   let name_error=$('#name_err');
-  var regex = /\d/
-  if(regex.test(name)){
+  var regex = /^[A-Za-z]+$/;
+  if(!regex.test(name)){
       name_error.removeClass('success').addClass('danger');
-      name_error.text('Name is not contain numbers');
+      name_error.text('Name contains only alphabet');
       $('#submit').prop("disabled", true);
   }
   else if(name==""){
