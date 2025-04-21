@@ -1,3 +1,6 @@
+$('document').ready(function(){
+$('#name').focus();
+});
 let users =localStorage.getItem('users')
 
 $('#username').on('input',()=>{
@@ -24,7 +27,7 @@ $('#username').on('input',()=>{
  $('#name').on('input',()=>{
   let name=$('#name').val();
   let name_error=$('#name_err');
-  var regex = /^[A-Za-z]+$/;
+  var regex = /^[A-Za-z _]+$/;
   if(!regex.test(name)){
       name_error.removeClass('success').addClass('danger');
       name_error.text('Name contains only alphabet');
@@ -46,7 +49,7 @@ $('#username').on('input',()=>{
   let pass1=$('#pass1');
   const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{8,}$/;
   var regex = /\d/
-  if(pass.length<8){
+  if(pass.length<=8){
      pass1.removeClass('success').addClass('danger');
      pass1.text('Password must contain 8 characters');
      $('#submit').prop("disabled", true);
@@ -68,11 +71,16 @@ $('#username').on('input',()=>{
   }
 });
 $('#submit').click(function() {
+    
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let name = $('#name').val();
 let email = $('#username').val();
 let pass = $('#pass').val();
-
+if(name=="" && email=="" || pass==""){
+    $('#registered').addClass('danger')
+    $('#registered').text('First you fill out the form..!'); 
+}
+else{
 var userData = {
   name: name,
   email: email,
@@ -80,10 +88,10 @@ var userData = {
 };
 
 users.push(userData);
+
 localStorage.setItem("users", JSON.stringify(users)); 
-window.location.href='login.html'
+
 $('#registered').addClass('success');
 $('#registered').text('Registration Success');
-
-
+}
 });

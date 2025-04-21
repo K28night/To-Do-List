@@ -3,13 +3,15 @@
     position: absolute;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 661px;
+    width: 851px;
     height: 80px;
     background-color: none;
     gap: 10px;
     left: 4rem;
+    margin-left: 6rem;
     top: 10rem;
     flex-direction:row;
+    
 }
 .user{
     font-size:24px;
@@ -23,7 +25,16 @@
     width: 200px;
     height: 69px;
     border-radius: 30px;
-    background-color: rgb(255, 255, 255);
+    background-color:#FFDDAB;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.section-1:hover{
+transform: translateY(-5px);
+}
+.section-2:hover{
+    transform: translateY(-5px);
 }
 .section-2{
     display:flex;
@@ -33,28 +44,48 @@
     height: 69px;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+#comp{
+    background-color: #DCA06D;/*sectiion 3 completed tasks*/
+    cursor: pointer;
+    transition: all 0.5s ease-out;
 }
 span{
-    margin-left: 4rem;
+    margin-left: 3rem;
     line-height: 2rem;
     font-family: "Andada Pro", serif;
     font-optical-sizing: auto
 }
+#Login_name{
+    margin-left: 6rem;
+}
+.task-list{
+    margin-bottom: 23px;
+}
 .list-tasks{
-    width: 62rem;
-    min-height: 26rem;
+    width: 64.8rem;
+    min-height: 13rem;
     position: absolute;
     border-radius: 2rem;
     top: 16rem;
-    left: 10rem;
+    left: 9rem;
     background-color:#F1EFEC;
+}
+#notask{
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 .search{
         margin-top: 2rem;
-    margin-left: 2rem;
+        margin-left: 2rem;
 }
 form{
-    margin-left: 15rem;
+    margin-left: 1rem;
+    gap: 3px;
+    display: flex;
 }
 input{
     border:none;
@@ -66,13 +97,29 @@ input{
 button{
     border: none;
     outline:none;
+    font-size:15px;
+    font-weight: bold;
     padding:1rem;
-    background-color: #D4C9BE;
+    position: absolute;
+    z-index: 10;
+    top: 7.5rem;
+    right: -7.5rem;
+    background-color: #123458;
+    color:rgb(216, 208, 208);
+    margin-top: 0.5rem;
     border-radius: 26px;
+    box-shadow: 5px 5px 7px #00000036;
+    transition: all 0.4s ease;
+}
+button:hover{
+    transform: translateY(5px);
+    box-shadow: none;
+    background-color: #123458;
+  
 }
 .tasks {
-    width: 56rem;
-    height: 6rem;
+    width: 59rem;
+    height: 5.5rem;
     background-color: #D4C9BE;
     margin-left: 1rem;
     margin-top: 1.6rem;
@@ -87,10 +134,20 @@ p {
     transform: translateY(-10px);
 }
 #date{
-margin-left:6rem;
+    position: absolute;
+    top: 2rem;
+    left: 17rem;
 }
 #time{
-    margin-left: 6rem;
+    margin-left: 4rem;
+    position: absolute;
+    top: 2rem;
+    left: 26rem;
+}
+#priority{
+    position:absolute;
+    top:2rem;
+    left: 34rem;
 }
 .fa-xmark {
     color: rgb(223, 75, 75);
@@ -99,6 +156,9 @@ margin-left:6rem;
     margin-top: 8px;
     left: 92%; 
     
+}
+#pending{
+margin-left: 4rem;
 }
 
 .fa-check {
@@ -119,7 +179,7 @@ margin-left:6rem;
     border-radius: 17px;
     position: absolute;
     top: 37px;
-    left: 49rem;
+    left: 44rem;
     cursor: pointer;
     border: 2px solid #F1EFEC;
     transition: transform 0.5s ease;
@@ -135,13 +195,66 @@ margin-left:6rem;
 .status.checked::after {
     content: "";
     position: absolute;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Check_icon.svg/1024px-Check_icon.svg.png');
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    border-radius: 8px;;
+    height: 16px;
+    background-image: url('../pngtree-tick-vector-icon-png-image_696437\ \(1\).jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-
 #task{
     margin-top: -31px;
     padding: 1.96rem
+}
+.delete{
+    position: absolute;
+    top: 34%;
+    right: 6%;
+    cursor: pointer;
+}
+.edit{
+    position: absolute;
+    top: 34%;
+    left: 79.6%;
+    cursor: pointer;
+}
+#task_name{
+    display:flex;
+    width:200px;
+    margin-left: 3rem;
+}
+.danger{
+    color:rgb(194, 8, 8);
+}
+#select_priority{
+    outline: none;
+    width: 142px;
+    height: 50px;
+    border: none;
+    border-radius: 27px;
+    padding: 0.9rem;
+    border: 1px solid #D4C9BE;
+}
+#completed {
+    margin-left: 4.5rem;
+}
+.noresult{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: saddlebrown;
+    z-index: 0;
+}
+#notask{
+    top: 8.5rem;
+    right: 50rem;
+}
+.task-number{
+    position: absolute;
+    z-index: 10;
+    left: -0.5rem;
 }

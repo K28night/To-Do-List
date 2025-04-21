@@ -14,7 +14,7 @@ body{
     align-items:center;
     justify-content: center;
     width:330px;
-    height:459px;
+    height: 460px;
     position: absolute;
     left:37%;
     background-color: #F1EFEC;
@@ -95,7 +95,7 @@ input[type="submit"]:hover{
 }
 #tname{
     position: absolute;
-    top: 18%;
+    top: 20%;
     margin-left: 0;
     left:12%
 }
@@ -122,9 +122,12 @@ select{
     border: #030303 thin solid;
     height: 44px;
 }
+#priority{
+    top:3%;
+}
 #pri{
     position: absolute;
-    top: 65%;
+    top: 66%;
     margin-left: 0;
     left: 12%;
 }
@@ -146,11 +149,22 @@ select{
 #submit{
     position: absolute;
     position: absolute;
-    margin-top: 24rem;
-    left: 3%;
+    margin-top: 24.7rem;
+    left: 0%;
     width: 130px;
 }
 small{
     margin-left:0;
 }
-#date{}
+#form1{
+    height: 450px;
+}
+#message{
+    position: absolute;
+    top: 2%;
+    left: 3rem;
+    margin-left: 0rem;
+}
+a#logout {
+    cursor: pointer;
+}

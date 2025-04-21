@@ -26,16 +26,23 @@
     </div>
         <div class="form">
             
-            <form action="register.html" method="GET" id="form">
+            <form  method="POST" id="form">
                 <h2>Register</h2>
-                <p id="registered">if you are registered then <a href="./login.html">Login</a></p>
+                <p id="registered">If you are registered then <a href="./login.html">Login</a></p>
                 <small id="message"></small>
                 <input type="text" name="name" placeholder="Name" id="name" required><br>
                 <small class="name" id="name_err">Enter the name of user</small>
+                <input type="password" id="pass" name="pass" title="password" placeholder="Position"required><br>
+                <small class="email" id="pass1">Position of user</small>
+                <input type="password" id="pass" name="pass" title="password" placeholder="Department"required><br>
+                <small class="email" id="pass1">Department</small>
                 <input type="email" name="email" placeholder="UserName" id="username" required><br>
                 <small class="email" id="email_error">Enter the Gmail as username</small>
                 <input type="password" id="pass" name="pass" title="password" placeholder="Password"required><br>
                 <small class="email" id="pass1">Password Must be 8 characters</small>
+                <input type="password" id="pass" name="pass" title="password" placeholder=" confirm-Password" required><br>
+                <small class="email" id="pass1">Password Must be same</small>
+              
                 <input type="submit" name="submit" id="submit" value="Submit">
             </form>
         </div>

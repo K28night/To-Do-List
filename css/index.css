@@ -76,7 +76,7 @@ box-shadow:none;
 }
 .intro button{
     border:none;
-    box-shadow: 4px 4px 6px #00000036;
+   
     background-color:#c0af9c;
     color:#123458;
     height: 2.6rem;
@@ -86,6 +86,7 @@ box-shadow:none;
     font-weight: bold;
     font-size:16px;
     border-radius:20px;
+    box-shadow: 4px 4px 6px #00000036;
     transition: all 0.4s ease;
     margin-left: 2rem;
 }
@@ -102,7 +103,4 @@ box-shadow:none;
     margin-top: -16.4rem;
     border-radius: 13rem;
     border:#c0af9c thin solid;
-}
-.intro p{
-    margin-left: 2rem;
 }
