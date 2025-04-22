@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Employee Tasks - MuzirisTrack</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+ body {
+      background-color: #D4C9BE;
+      font-family: "Andada Pro", serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #123458;
+      color: #D4C9BE;
+      padding: 0 2rem;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    h2 {
+      color: #123458;
+    }
+
+    select {
+      padding: 0.5rem;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f7f3ef;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 1rem;
+      border-bottom: 1px solid #c0af9c;
+    }
+
+    th {
+      background-color: #c0af9c;
+      color: #123458;
+    }
+
+    .btn {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: "Andada Pro", serif;
+    }
+
+    .btn-edit {
+      background-color: #d0b47c;
+      color: #123458;
+      margin-right: 0.5rem;
+    }
+
+    .btn-edit:hover {
+      background-color: #c4a962;
+    }
+
+    .btn-delete {
+      background-color: #aa5c5c;
+      color: #fff;
+    }
+
+    .btn-delete:hover {
+      background-color: #944b4b;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #f7f3ef;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 400px;
+      position: relative;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: #123458;
+    }
+
+    .modal-content label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+    }
+
+    .modal-content .btn {
+      margin-top: 1.5rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 0.8rem;
+      right: 1rem;
+      font-size: 20px;
+      cursor: pointer;
+      color: #123458;
+    }
+    #dashboard,#Logout{
+        text-decoration: none;
+        color: #f7f3ef;
+        margin-right: 1rem;;
+        font-size: 16px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+    }
+    #dashboard:hover{
+        color: #aaa;
+    }
+    #Logout:hover{
+        color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MuzirisTrack - Admin Dashboard</h1>
+    <div class="links">
+           
+        <a  id="dashboard">Dashboard</a>
+        <a id="Logout" onclick="sessionclear()">Logout</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>View Tasks of Employees</h2>
+
+    <label for="employee">Select Employee:</label>
+    <select id="employee">
+      <option value="">-- Choose an employee --</option>
+      <option value="emp1">John Doe</option>
+      <option value="emp2">Jane Smith</option>
+    </select>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Task ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="taskList"></tbody>
+    </table>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal" id="editModal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Edit Task</h3>
+      <label>Title:</label>
+      <input type="text" id="editTitle">
+
+      <label>Description:</label>
+      <input type="text" id="editDesc">
+
+      <label>Deadline:</label>
+      <input type="date" id="editDeadline">
+
+      <label>Status:</label>
+      <input type="text" id="editStatus">
+
+      <button class="btn btn-edit" id="saveEditBtn">Save</button>
+    </div>
+  </div>
+
+  <script>
+    $('#dashboard').click(function(){
+       
+            window.location.href="../templates/admin_dash.html"
+       
+    });
+    const taskData = {
+      emp1: [
+        { id: 'T101', title: 'Design Homepage', desc: 'Create layout for homepage', deadline: '2025-04-30', status: 'In Progress' },
+        { id: 'T102', title: 'Fix Login Bug', desc: 'Resolve login error', deadline: '2025-04-25', status: 'Pending' }
+      ],
+      emp2: [
+        { id: 'T201', title: 'Prepare Report', desc: 'Monthly report for April', deadline: '2025-04-28', status: 'Completed' }
+      ]
+    };
+
+    let currentEmp = "";
+    let editingTaskId = "";
+
+    function loadTasks(empId) {
+      const list = taskData[empId] || [];
+      $("#taskList").empty();
+      $.each(list, function (i, task) {
+        $("#taskList").append(`
+          <tr data-id="${task.id}">
+            <td>${task.id}</td>
+            <td>${task.title}</td>
+            <td>${task.desc}</td>
+            <td>${task.deadline}</td>
+            <td>${task.status}</td>
+            <td>
+              <button class="btn btn-edit edit-btn">Edit</button>
+              <button class="btn btn-delete delete-btn">Delete</button>
+            </td>
+          </tr>
+        `);
+      });
+    }
+
+    $(document).ready(function () {
+        $('#employee').focus();
+      // Handle employee change
+      $("#employee").on("change", function () {
+        currentEmp = $(this).val();
+        loadTasks(currentEmp);
+      });
+
+      // Edit task
+      $(document).on("click", ".edit-btn", function () {
+        const row = $(this).closest("tr");
+        editingTaskId = row.data("id");
+        const task = taskData[currentEmp].find(t => t.id === editingTaskId);
+        if (task) {
+          $("#editTitle").val(task.title);
+          $("#editDesc").val(task.desc);
+          $("#editDeadline").val(task.deadline);
+          $("#editStatus").val(task.status);
+          $("#editModal").fadeIn();
+        }
+      });
+
+      // Save edited task
+      $("#saveEditBtn").on("click", function () {
+        const title = $("#editTitle").val();
+        const desc = $("#editDesc").val();
+        const deadline = $("#editDeadline").val();
+        const status = $("#editStatus").val();
+
+        const taskIndex = taskData[currentEmp].findIndex(t => t.id === editingTaskId);
+        if (taskIndex !== -1) {
+          taskData[currentEmp][taskIndex] = {
+            id: editingTaskId,
+            title, desc, deadline, status
+          };
+        }
+
+        $("#editModal").fadeOut();
+        loadTasks(currentEmp);
+      });
+
+      // Delete task
+      $(document).on("click", ".delete-btn", function () {
+        if (!confirm("Are you sure you want to delete this task?")) return;
+        const row = $(this).closest("tr");
+        const taskId = row.data("id");
+        taskData[currentEmp] = taskData[currentEmp].filter(t => t.id !== taskId);
+        loadTasks(currentEmp);
+      });
+
+      // Close modal
+      $(".close-btn").on("click", function () {
+        $("#editModal").fadeOut();
+      });
+    });
+
+    function sessionclear(){
+    sessionStorage.removeItem("admin");
+    window.location.href='./index.html'
+    }
+  </script>
+
+</body>
+</html>

@@ -1,14 +1,33 @@
 $('document').ready(function(){
     $('#username').focus();
     });
-    
+    var admin=[
+            {username:'admin',password:'123'},
+            {username:'admin123',password:'1234'}
+        ];
     $('#submit').click(function(event) {
         event.preventDefault();
-    
+       
         var email = $('#username').val();
         var pass = $('#password').val();
+        let isValid = admin.find(a => a.username === email && a.password === pass);
         if(email==""||pass==""){
             $("#login").text("Enter username and password..!").css("color", "red");
+        }
+        else{
+        if(isValid)
+        {
+            $("#login").text("Welcome Admin ").css("color", "green");
+            var sessionadmin = {
+                username: email,
+                };
+                sessionStorage.setItem("admin", JSON.stringify(sessionadmin));
+
+                // Optional delay before redirecting
+                setTimeout(function () {
+                window.location.href = '../templates/admin_dash.html';
+                }, 1000); // 1 second delay
+        
         }
         else{
         // Retrieve stored user data from localStorage
@@ -47,4 +66,5 @@ $('document').ready(function(){
             $("#login").text("No user found. Please register first.").css("color", "red");
         }
     }
+}
     });

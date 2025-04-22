@@ -14,7 +14,7 @@
 <body>
     <header>
         <div class="logo">
-            <h2>To-Do List</h2>
+            <h2>MuzirisTrack</h2> <span class="track">TASK MANAGEMENT</span>
         </div>
         <div class="links">
             <a href="index.html">Home</a> 
@@ -26,25 +26,46 @@
     </div>
         <div class="form">
             
-            <form  method="POST" id="form">
-                <h2>Register</h2>
+            <form method="POST" id="form">
+                <h2>Employee Register</h2>
                 <p id="registered">If you are registered then <a href="./login.html">Login</a></p>
                 <small id="message"></small>
-                <input type="text" name="name" placeholder="Name" id="name" required><br>
-                <small class="name" id="name_err">Enter the name of user</small>
-                <input type="password" id="pass" name="pass" title="password" placeholder="Position"required><br>
-                <small class="email" id="pass1">Position of user</small>
-                <input type="password" id="pass" name="pass" title="password" placeholder="Department"required><br>
-                <small class="email" id="pass1">Department</small>
-                <input type="email" name="email" placeholder="UserName" id="username" required><br>
-                <small class="email" id="email_error">Enter the Gmail as username</small>
-                <input type="password" id="pass" name="pass" title="password" placeholder="Password"required><br>
-                <small class="email" id="pass1">Password Must be 8 characters</small>
-                <input type="password" id="pass" name="pass" title="password" placeholder=" confirm-Password" required><br>
-                <small class="email" id="pass1">Password Must be same</small>
-              
+            
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Name" id="name" required>
+                        <small class="error" id="name_err">Enter the name of user</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" name="position" placeholder="Position" id="position" required>
+                        <small class="error" id="position_err">Position of user</small>
+                    </div>
+            
+                    <div class="form-group">
+                        <input type="text" name="department" placeholder="Department" id="department" required>
+                        <small class="error" id="department_err">Department</small>
+                    </div>
+            
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Username (Gmail)" id="username" required>
+                        <small class="error" id="email_error">Enter the Gmail as username</small>
+                    </div>
+            
+                    <div class="form-group">
+                        <input type="password" id="pass" name="pass" title="password" placeholder="Password"required><br>
+                        <small class="error" id="password_err">Password must be 8 characters</small>
+                    </div>
+            
+                    <div class="form-group">
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password" required>
+                        <small class="error" id="confirm_password_err">Passwords must match</small>
+                    </div>
+                </div>
+            
                 <input type="submit" name="submit" id="submit" value="Submit">
             </form>
+            
         </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

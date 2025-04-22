@@ -12,7 +12,8 @@
 <body>
     <header>
         <div class="logo">
-            <h2>To-Do List</h2>
+            <h2>MuzirisTrack</h2> <span class="track">TASK MANAGEMENT</span>
+            
         </div>
         <div class="links">
             <a title="You are in the same page">Home</a>
@@ -22,8 +23,8 @@
             <button class="login" onclick="window.location.href='login.html'" id="login">Login</button>
     </header>
     <div class="intro">
-        <h2> Welcome to your To-Do List! <br><span>Stay Organized. Get Things Done.</span></h2>
-        <p>With MyToDoList, manage your daily tasks and achieve your goals effortlessly. <br> Start adding tasks and keep track of them.</p>
+        <h2> Welcome to MuzirisTrack!<br><span>Stay Organized. Get Things Done.</span></h2>
+        <p>With MuzirisTrack, managing your daily tasks has never been easier.  Whether it’s personal errands or <br>work-related goals, keep everything in one place and stay focused.</p>
         <br><button name="add_tasks" id="add_task">Add Your Task</button>
         <img src="../flat-lay-notebook-with-list-desk_23-2148938726.avif" alt="" height="400px" width="450px">
     </div>
@@ -35,7 +36,7 @@
       if (storedUser) {
             window.location.href = "add_task.html";  // Redirect to add_task page if user exists
         } else {
-            window.location.href = "register.html";  // Redirect to register page if user is not found
+            window.location.href = " login.html";  // Redirect to register page if user is not found
         }
         })
     </script>

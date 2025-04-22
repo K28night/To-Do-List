@@ -3,11 +3,11 @@ $(document).ready(function(){
     }); 
  
  //search
- let found=false;
+ let found;
  $('.noresult').css('display','none');
     $('.taskname').on('input', function () {
     let keyword = $(this).val().toLowerCase();
-    
+  
     $('.task-list .tasks').each(function () {//select each task in list
       let taskText = $(this).find('.task').text().toLowerCase();
 
@@ -18,12 +18,13 @@ $(document).ready(function(){
         found=false;
         $(this).hide();
       }
-      noresult();
     });
+     noresult();
   }); 
   //search by date
 $('.taskdate').on("input",function(){
     let date=$(this).val();
+   
     $('.task-list .tasks').each(function(){
         let taskdate=$(this).find('.task').text()
         if(taskdate.includes(date)){
@@ -34,8 +35,9 @@ $('.taskdate').on("input",function(){
             found=false;
             $(this).hide();
         }
-        noresult();
+        
     });
+    noresult();
 });
 //search with priority
 $('.task_pri').on('input', function () {
@@ -51,8 +53,9 @@ $('.task_pri').on('input', function () {
         found=false;
         $(this).hide();
       }
-      noresult();
+      
     });
+    noresult();
   }); 
   function noresult(){
     if(found){
@@ -125,7 +128,8 @@ if (userTasks.length > 0) {
 //status updation
 $('#task-list').on('click', '.status', function() {
     $(this).toggleClass('checked'); 
-
+    let confirmed = confirm("Are you sure you want to delete this task?");
+    if (confirmed) {
     const index = $(this).data('index');
 
     if ($(this).hasClass('checked')) {
@@ -148,7 +152,6 @@ $('#task-list').on('click', '.status', function() {
     localStorage.setItem("tasks", JSON.stringify(allTasks));
    
     if($('.status').hasClass('pen')) {
-        $('#completed').text("comtask");
         $('#pend').trigger('click');
     } else if($('.status').hasClass('comp')) {
         $('#comp').trigger('click');
@@ -159,6 +162,7 @@ $('#task-list').on('click', '.status', function() {
     // Update task counters
     $('#completed').text(comtask);
     $('#pending').text(pentask);
+}
 });
 
 //delete task
@@ -303,6 +307,6 @@ $('#total').click(function(){
 // });
 //logout
 function sessionclear(){
-    sessionStorage.clear();
+    sessionStorage.removeItem("user");
     location.href='./index.html'
     }

@@ -34,9 +34,10 @@ width:200px;
 border-radius: 10px;
 }
 #password{
-    padding: 0.6rem;
+    padding: 1.6rem;
     margin-top: 1rem;
-    width: 225px;
+    width: 200px;
+    height: 0rem;
 }
 input::placeholder{
     padding-left: 16px;

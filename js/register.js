@@ -44,14 +44,15 @@ $('#username').on('input',()=>{
       $('#submit').prop("disabled", false);
   }
  });
+ let pass;
  $('#pass').on('input',()=>{
-  let pass=$('#pass').val();
-  let pass1=$('#pass1');
+   pass=$('#pass').val();
+  let pass1=$('#password_err');
   const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{8,}$/;
   var regex = /\d/
-  if(pass.length<=8){
+  if(pass.length<8){
      pass1.removeClass('success').addClass('danger');
-     pass1.text('Password must contain 8 characters');
+     pass1.text('Password must be 8 characters');
      $('#submit').prop("disabled", true);
   }
   else if(!passwordRegex.test(pass)){
@@ -70,21 +71,41 @@ $('#username').on('input',()=>{
       $('#submit').prop("disabled", false);
   }
 });
+$('#confirm_password').on('input',()=>{
+    confirm_password=$('#confirm_password').val();
+   let pass1=$('#confirm_password_err');
+   if(pass==confirm_password){
+      pass1.removeClass('danger').addClass('success');
+      pass1.text('Password Validation Success');
+      $('#submit').prop("disabled", false);
+   }
+   else{
+       pass1.removeClass('success').addClass('danger');
+       pass1.text('Password must be same');
+       $('#submit').prop("disabled", true);
+   }
+ });
 $('#submit').click(function() {
+    var storedUser = sessionStorage.getItem("admin");
+    var admin = JSON.parse(storedUser);
     
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let name = $('#name').val();
 let email = $('#username').val();
 let pass = $('#pass').val();
-if(name=="" && email=="" || pass==""){
+let confirm_password = $('#confirm_password').val();
+let position = $('#position').val();
+let department = $('#department').val();
+if(name=="" && email=="" || pass=="" || position=="" || department=="" ||confirm_password==""){
     $('#registered').addClass('danger')
     $('#registered').text('First you fill out the form..!'); 
 }
 else{
 var userData = {
-  name: name,
-  email: email,
-  password: pass
+    admin:admin,
+    name: name,
+    email: email,
+    password: pass
 };
 
 users.push(userData);

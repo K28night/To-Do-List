@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuzirisTrack Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            background-color: #D4C9BE;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: "Andada Pro", serif;
+            font-optical-sizing: auto;
+        }
+        header {
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #123458;
+        }
+        .logo {
+            margin-left: 1.3rem;
+            color: #D4C9BE;
+            text-decoration: none;
+        }
+        .logo h2 {
+            margin-top: 0.6rem;
+        }
+        .links {
+            margin-right: 2rem;
+            font-size: 18px;
+        }
+        header a {
+            text-decoration: none;
+            color: #D4C9BE;
+            padding-right: 1rem;
+            transition: color 0.2s ease;
+        }
+        .links a:hover {
+            color: #f1ede9;
+        }
+        .dashboard {
+            padding: 2rem;
+        }
+        .dashboard h2 {
+            color: #123458;
+            margin-bottom: 1.5rem;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background-color: #F1EFEC;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: none;
+            background-color: #e7dfd6;
+        }
+        .card h3 {
+            color: #123458;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            color: #333;
+        }
+
+.employees-section {
+    padding: 2rem;
+    font-family: "Andada Pro", serif;
+    color: #123458;
+}
+
+#employeeSearch {
+    width: 100%;
+    padding: 10px 16px;
+    margin-bottom: 1rem;
+    border: 2px solid #c0af9c;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 2px 2px 5px #00000026;
+    font-family: "Andada Pro", serif;
+}
+
+.employees-section h2 {
+    font-size: 28px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f1efec;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.employee-table th,
+.employee-table td {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid #d4c9be;
+}
+
+.employee-table th {
+    background-color: #c0af9c;
+    color: #fff;
+    font-size: 16px;
+}
+
+.employee-table td {
+    font-size: 15px;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-family: "Andada Pro", serif;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+    background-color: #c0af9c;
+    color: #123458;
+}
+
+.edit-btn:hover {
+    background-color: #b39c87;
+}
+
+.delete-btn {
+    background-color: #e2786b;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c8655a;
+}
+#Logout{
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+    </style>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2>MuzirisTrack</h2> <span class="track">TASK MANAGEMENT</span>
+        </div>
+        <div class="links">
+           
+            <a id="Logout" onclick="sessionclear()">Logout</a>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <h2>Admin Dashboard <span id="Login_name"></span></h2>
+        <div class="features">
+            <div class="card" id="register">
+                <h3>Register Employees</h3>
+                <p>Add and manage employee profiles efficiently.</p>
+            </div>
+            <div class="card">
+                <h3>View All Employees</h3>
+                <p>Access a list of all registered employees.</p>
+            </div>
+            <div class="card">
+                <h3>Assign Tasks</h3>
+                <p>Assign and manage tasks for each employee.</p>
+            </div>
+            <div class="card" id="view_task">
+                <h3>View Tasks</h3>
+                <p>Track tasks assigned to individual employees.</p>
+            </div>
+           
+        </div>
+        <section class="employees-section">
+            <h2>All Registered Employees</h2>
+        
+            <input type="text" id="employeeSearch" onkeyup="filterEmployees()" placeholder="Search employees by name, email, or role">
+        
+            <table class="employee-table" id="employeeTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Alice Johnson</td>
+                        <td>alice@example.com</td>
+                        <td>Developer</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Bob Smith</td>
+                        <td>bob@example.com</td>
+                        <td>Designer</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Add more employees -->
+                </tbody>
+            </table>
+        </section>
+        
+        
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+$('#view_task').click(function(){
+    window.location.href="../templates/view_each_employee.html"
+});
+$('#register').click(function(){
+    window.location.href="../templates/register.html"
+})
+
+    var storedUser = sessionStorage.getItem("admin");
+var admin = JSON.parse(storedUser);
+
+if (admin) {
+    $('#Login_name').text('Hello ' + admin.username);
+} else {
+    $('#Login_name').text('Hello Guest');
+}
+
+function filterEmployees() {
+    const input = document.getElementById("employeeSearch");
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById("employeeTable");
+    const tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+        const row = tr[i];
+        const tdName = row.cells[1]?.textContent.toLowerCase();
+        const tdEmail = row.cells[2]?.textContent.toLowerCase();
+        const tdRole = row.cells[3]?.textContent.toLowerCase();
+
+        if (
+            tdName.includes(filter) ||
+            tdEmail.includes(filter) ||
+            tdRole.includes(filter)
+        ) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
+}
+
+function sessionclear(){
+    sessionStorage.removeItem("admin");
+    window.location.href='./index.html'
+    }
+</script>
+
+
+</body>
+</html>

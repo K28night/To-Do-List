@@ -145,12 +145,13 @@ select{
 }
 #form{
     height: 479px;
+    
 }
 #submit{
     position: absolute;
     position: absolute;
     margin-top: 24.7rem;
-    left: 0%;
+    left: -20%;
     width: 130px;
 }
 small{
@@ -158,6 +159,8 @@ small{
 }
 #form1{
     height: 450px;
+    width: 21rem;
+    left:30.6rem;
 }
 #message{
     position: absolute;

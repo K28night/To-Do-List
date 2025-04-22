@@ -21,6 +21,17 @@ header{
     text-decoration: none;
     color:#D4C9BE;
 }
+.logo h2{
+    margin-top: 0.6rem;
+    margin-left: 0.3rem;
+}
+.track{
+    position: absolute;
+    letter-spacing: 2px;
+    font-size: 12px;
+    margin-left: 0.3rem;
+    top: 3rem;
+}
 .links{
     margin-right: 2rem;
     font-size:18px;

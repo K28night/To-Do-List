@@ -1,9 +1,10 @@
 .form{
     top: 24%;
+    width: 36rem;
+    left: 23rem;
     height: 430px;
 }
 small{
-    margin-bottom: 1rem;
     font-size:14px;
     letter-spacing: 1px;
 }
@@ -14,14 +15,20 @@ input,input[type="password"]{
 }
 input[type="submit"]{
     padding: 0;
+    background-color: #e4d2c1;
+    height: 48px;
+    letter-spacing: 1px;
+    width: 146px;
+    font-style: normal;
+    margin-left: 11.4rem;
+    margin-top: 0.8rem;
+    border-radius: 20px;
     margin-top:1rem;
 }
-input[type="password"],input[type="email"]{
+/* input[type="password"],input[type="email"]{
     margin-top:1rem;
-}
-small{
-    margin-left:2rem;
-}
+} */
+
 input[type="text"]{
     margin-left:0rem;
     margin-top:0rem;
@@ -31,4 +38,24 @@ input[type="text"]{
 }
 .success{
     color:green;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+input{
+    margin-left: 0;
+}
+.form h2{
+    margin-left: 9rem;
+}
+small#password_err {
+    position: absolute;
+    bottom: 5rem;
 }
