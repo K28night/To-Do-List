@@ -158,6 +158,20 @@
     letter-spacing: 1px;
     font-size: 18px;
 }
+.assign-btn{
+    background-color: #28a745;
+    color: white;
+    border: none;
+    margin-left: 1rem;
+    margin-right:1rem;
+    border-radius: 5px;
+    width: 6rem;
+    height: 27px;
+    transition: background-color 0.3s ease;
+}
+.assign-btn:hover{
+    background-color: #206c35;
+}
     </style>
     <link rel="stylesheet" href="../css/index.css">
 </head>
@@ -173,7 +187,7 @@
     </header>
 
     <div class="dashboard">
-        <h2>Admin Dashboard <span id="Login_name"></span></h2>
+        <h2 id="Login_name">Admin Dashboard <span ></span></h2>
         <div class="features">
             <div class="card" id="register">
                 <h3>Register Employees</h3>
@@ -219,16 +233,7 @@
                             <button class="delete-btn">Delete</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Bob Smith</td>
-                        <td>bob@example.com</td>
-                        <td>Designer</td>
-                        <td>
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Delete</button>
-                        </td>
-                    </tr>
+                    
                     <!-- Add more employees -->
                 </tbody>
             </table>
@@ -249,11 +254,91 @@ $('#register').click(function(){
 var admin = JSON.parse(storedUser);
 
 if (admin) {
-    $('#Login_name').text('Hello ' + admin.username);
+    $('#Login_name').text( admin.username+"'s Dashboard");
 } else {
-    $('#Login_name').text('Hello Guest');
+    $('#Login_name').text('Admin Dashboard');
 }
 
+var alladmintasks = localStorage.getItem("users");
+tasks = JSON.parse(alladmintasks) || []; 
+var adminTasks = [];
+// let comtask=0;
+// let pentask=0;
+
+tasks.forEach(function(task) {
+    if (task.admin == admin.username) {
+        adminTasks.push(task);
+    }
+});
+
+let taskListHTML = ""; 
+    if (adminTasks.length > 0) {
+        adminTasks.forEach(function(task, index) {
+            var dindex=index+1;
+        taskListHTML += '<tr>';
+        taskListHTML += '<p id="task" class="task">';
+        taskListHTML += `<td>${dindex}</td> `;
+        taskListHTML += '<td>'+task.name + '</td><td>' + task.email + '</td><td>' + task.position + '</td>' ;
+        
+           taskListHTML += `<td>
+          <button class="edit-btn" data-index="${index}">Edit</button>
+          <button class="assign-btn" data-index="${index}" title="Assign Task">Assign Task</button>
+         <button class="delete-btn" data-index="${index}">Delete</button></td>
+          
+          
+          </tr>`;
+    });
+    
+        $('tbody').html(taskListHTML); 
+    } else {
+    
+        $('tbody').html('<h3 id="notasks">You have no employees added</h3>');
+       
+       
+    }
+//delete
+$('.delete-btn').click(function(){
+let confirmed=confirm('Are you sure that delete the seleted user');
+if(confirmed){
+    let index = $(this).data('index');
+    let updatedTasks = adminTasks.filter((task) => {
+            return !(task.admin === admin.username && task.email === adminTasks[index].email);
+        });
+    localStorage.setItem("users", JSON.stringify(updatedTasks));
+    location.reload();
+    }
+        
+});
+//edit employee
+$('.edit-btn').on('click', function() {
+    let confirmed=confirm('Are you sure that edit the seleted user');
+if(confirmed){
+    let index = $(this).data('index');
+    var sessionedit = {
+        admin:admin.username,
+        index: index,
+        tname: adminTasks[index].email,
+        adminTasks:adminTasks
+        };
+        sessionStorage.setItem("edit_employee", JSON.stringify(sessionedit));
+        window.location.href="../templates/register.html";
+    }
+});
+//assign Task
+
+$('.assign-btn').click(function(){
+    let index = $(this).data('index');
+    var sessionedit = {
+        admin:admin.username,
+        index: index,
+        email: adminTasks[index].email,
+        adminTasks:adminTasks
+        };
+        sessionStorage.setItem("assign", JSON.stringify(sessionedit));
+        window.location.href="../templates/add_task.html";
+});
+
+//search
 function filterEmployees() {
     const input = document.getElementById("employeeSearch");
     const filter = input.value.toLowerCase();

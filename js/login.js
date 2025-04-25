@@ -50,6 +50,7 @@ $('document').ready(function(){
                     $("#login").text("Login successful! ").css("color", "green");
     
                     var sessionUser = {
+                    admin:foundUser.admin,
                     name: foundUser.name,
                     email: foundUser.email
                     };

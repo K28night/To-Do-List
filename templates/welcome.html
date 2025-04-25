@@ -35,7 +35,7 @@
             <p>Your completed tasks<br><span id="completed"></span></p>
         </div>
         <div class="button">
-           <button id="add_task" onclick="location.href='./add_task.html'">Add your tasks</button>
+           <!-- <button id="add_task" onclick="location.href='./add_task.html'">Add your tasks</button> -->
         </div>
     </div>
     <div class="list-tasks">
@@ -52,7 +52,15 @@
            
             <!-- <button title="Fillter your tasks"><i class="fas fa-search" style="color:#123458"></i></button> -->
        </form>
-      
+       <div class="task-header">
+        <span class="header-item">#</span>
+        <span class="header-item hname">Task Name</span>
+        <span class="header-item hdis">Description</span>
+        <span class="header-item hdate">Date</span>
+        <span class="header-item htime">Time</span>
+        <span class="header-item prio">Priority</span>
+        <span class="header-item hstatus">Status</span>
+      </div>
         <div class="task-list" id="task-list">
       
         </div>  <p id="noresult" class="noresult">No tasks found</p>

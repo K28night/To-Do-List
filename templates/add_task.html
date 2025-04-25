@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="../css/add_task.css">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/register.css">
+    <style>
+        .form{
+            border-radius: 8%;
+        }
+        input[type="submit"]{
+            margin-left: -1.6rem;
+            margin-top: 0.8rem;
+            border-radius: 20px;
+            margin-top: 0rem;
+        }
+        select{
+            width:16rem;
+            border:#123458 thin solid;
+            background-color: #F1EFEC;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,7 +33,7 @@
         <div class="links">
             <a href="index.html">Home</a> 
             <a href="about.html">About</a>
-            <a href="./welcome.html">Dashboard</a>
+            <a id="dashboard">Dashboard</a>
              <a id="logout" onclick="sessionclear()">Logout</a></div>
         </div>
 
@@ -26,26 +42,53 @@
     <div class="form-heading">
         <h2>Task Time! Add a New One</h2></div>
         <div class="form" id="form1">
-           
             <form action="add_task.html" method="GET" id="form">
+              <div class="grid-form">
+                <small id="message"></small>
+                <div class="form-group">
+                  <label for="em_name">Employee Name</label>
+                  <input type="text" name="em_name" id="em_name" placeholder="Employee Name" required>
+                </div>
+          
+                <div class="form-group">
+                  <label for="email">Employee Gmail</label>
+                  <input type="email" name="email" id="email" placeholder="Employee Gmail" required>
+                </div>
                 
-                 <small id="message"></small>
-                <input type="text" name="task_name" placeholder="Task Name" id="task_name" required>
-                <small id="tname">Enter task name</small>
-                <textarea name="task_dis" id="task_dis" placeholder="Task Discription" rows="6" cols="0" required></textarea>
-                <small id="dis">Enter task discription</small>
-                <select name="priority" id="priority" required>
-                    <option value="" selected>Select a Priority</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
-                <small id="pri">Select your priority</small>
-                <input type="datetime-local" id="shedule" name="shedule" title="Task Schedule" min="2025-04-01" required><br>
-                <small id="shedu">Select a schedule,  Optional!</small>
-                <input type="submit" name="submit" id="submit" value="Submit">
+               
+                  
+                <div class="form-group">
+                  <label for="task_name">Task Name</label>
+                  <input type="text" name="task_name" id="task_name" placeholder="Task Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority" required>
+                      <option value="" selected disabled>Select Priority</option>
+                      <option value="Low">Low</option>
+                      <option value="Medium">Medium</option>
+                      <option value="High">High</option>
+                    </select>
+                  </div>
+                <div class="form-group ">
+                    <label for="shedule">Due Date</label>
+                    <input type="datetime-local" id="shedule" name="shedule" min="2025-04-01" required>
+                  </div>
+                <div class="form-group ">
+                    <label for="task_dis">Task Description</label>
+                    <textarea name="task_dis" id="task_dis" placeholder="Task Description" required></textarea>
+                  </div>
+
+                <div class="form-group full-width center">
+                  <input type="submit" name="submit" id="submit" value="Submit">
+                </div>
+          
+              </div>
             </form>
-        </div>
+          </div>
+          
+          
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/add_task.js">

@@ -99,6 +99,8 @@
       background-color: #f7f3ef;
       padding: 2rem;
       border-radius: 15px;
+      top: 16%;
+      left: 33%;
       width: 400px;
       position: relative;
     }
@@ -115,7 +117,7 @@
     }
 
     .modal-content input {
-      width: 100%;
+      width: 92%;
       padding: 0.6rem;
       margin-top: 0.5rem;
       border-radius: 8px;
@@ -148,6 +150,12 @@
     }
     #Logout:hover{
         color: #aaa;
+    }
+    .danger{
+        color:red;
+    }
+    .success{
+        color:green;
     }
   </style>
 </head>
@@ -192,6 +200,7 @@
     <div class="modal-content">
       <span class="close-btn">&times;</span>
       <h3>Edit Task</h3>
+      <small id="message"></small>
       <label>Title:</label>
       <input type="text" id="editTitle">
 
@@ -199,7 +208,7 @@
       <input type="text" id="editDesc">
 
       <label>Deadline:</label>
-      <input type="date" id="editDeadline">
+      <input type="datetime-local" id="editDeadline">
 
       <label>Status:</label>
       <input type="text" id="editStatus">
@@ -208,105 +217,8 @@
     </div>
   </div>
 
-  <script>
-    $('#dashboard').click(function(){
-       
-            window.location.href="../templates/admin_dash.html"
-       
-    });
-    const taskData = {
-      emp1: [
-        { id: 'T101', title: 'Design Homepage', desc: 'Create layout for homepage', deadline: '2025-04-30', status: 'In Progress' },
-        { id: 'T102', title: 'Fix Login Bug', desc: 'Resolve login error', deadline: '2025-04-25', status: 'Pending' }
-      ],
-      emp2: [
-        { id: 'T201', title: 'Prepare Report', desc: 'Monthly report for April', deadline: '2025-04-28', status: 'Completed' }
-      ]
-    };
-
-    let currentEmp = "";
-    let editingTaskId = "";
-
-    function loadTasks(empId) {
-      const list = taskData[empId] || [];
-      $("#taskList").empty();
-      $.each(list, function (i, task) {
-        $("#taskList").append(`
-          <tr data-id="${task.id}">
-            <td>${task.id}</td>
-            <td>${task.title}</td>
-            <td>${task.desc}</td>
-            <td>${task.deadline}</td>
-            <td>${task.status}</td>
-            <td>
-              <button class="btn btn-edit edit-btn">Edit</button>
-              <button class="btn btn-delete delete-btn">Delete</button>
-            </td>
-          </tr>
-        `);
-      });
-    }
-
-    $(document).ready(function () {
-        $('#employee').focus();
-      // Handle employee change
-      $("#employee").on("change", function () {
-        currentEmp = $(this).val();
-        loadTasks(currentEmp);
-      });
-
-      // Edit task
-      $(document).on("click", ".edit-btn", function () {
-        const row = $(this).closest("tr");
-        editingTaskId = row.data("id");
-        const task = taskData[currentEmp].find(t => t.id === editingTaskId);
-        if (task) {
-          $("#editTitle").val(task.title);
-          $("#editDesc").val(task.desc);
-          $("#editDeadline").val(task.deadline);
-          $("#editStatus").val(task.status);
-          $("#editModal").fadeIn();
-        }
-      });
-
-      // Save edited task
-      $("#saveEditBtn").on("click", function () {
-        const title = $("#editTitle").val();
-        const desc = $("#editDesc").val();
-        const deadline = $("#editDeadline").val();
-        const status = $("#editStatus").val();
-
-        const taskIndex = taskData[currentEmp].findIndex(t => t.id === editingTaskId);
-        if (taskIndex !== -1) {
-          taskData[currentEmp][taskIndex] = {
-            id: editingTaskId,
-            title, desc, deadline, status
-          };
-        }
-
-        $("#editModal").fadeOut();
-        loadTasks(currentEmp);
-      });
-
-      // Delete task
-      $(document).on("click", ".delete-btn", function () {
-        if (!confirm("Are you sure you want to delete this task?")) return;
-        const row = $(this).closest("tr");
-        const taskId = row.data("id");
-        taskData[currentEmp] = taskData[currentEmp].filter(t => t.id !== taskId);
-        loadTasks(currentEmp);
-      });
-
-      // Close modal
-      $(".close-btn").on("click", function () {
-        $("#editModal").fadeOut();
-      });
-    });
-
-    function sessionclear(){
-    sessionStorage.removeItem("admin");
-    window.location.href='./index.html'
-    }
+  <script src="../js/view_each_employee.js">
+   
   </script>
 
 </body>

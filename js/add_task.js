@@ -12,7 +12,17 @@ $(document).ready(function() {
     let minutes = String(now.getMinutes()).padStart(2, '0');
 
     let minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
-
+    if(sessionStorage.getItem('assign')){
+        var assign=sessionStorage.getItem("assign");
+        var employee_task = JSON.parse(assign);
+        admin_user=JSON.parse(localStorage.getItem('users'))
+                user=admin_user.find((task) => {
+                    return (task.admin == employee_task.admin && task.email == employee_task.email);
+                });
+        
+        $('#em_name').val(user.name);;
+        $('#email').val(employee_task.email)
+    }
     $('#shedule').attr('min', minDateTime);
 });
 
@@ -35,24 +45,31 @@ $(document).ready(function() {
                     date=dateTime.split('T')[0];
                     time=dateTime.split('T')[1];//from the local-datetime date format is YYYY-mm-ddTHH:MM
                 }
-                var storedUser = sessionStorage.getItem("user");
-                var user = JSON.parse(storedUser);
-                if (user) {
+                var assign=sessionStorage.getItem("assign");
+                var employee_task = JSON.parse(assign);
+               admin_user=JSON.parse(localStorage.getItem('users'))
+                user=admin_user.filter((task) => {
+                    return (task.admin == employee_task.admin && task.email == employee_task.email);
+                });
+                if (assign) {
                     var taskData = {
-                    email:user.email,
-                    name: name,
-                    discription: dis,
-                    priority: pri,
-                    date:date,
-                    time:time,
-                    status:'pending'
+                        admin:employee_task.admin,
+                        employee_name:user.name,
+                        email:employee_task.email,
+                        name: name,
+                        discription: dis,
+                        priority: pri,
+                        date:date,
+                        time:time,
+                        status:'Pending'
                 };
                 tasks.push(taskData);
                 localStorage.setItem("tasks", JSON.stringify(tasks)); 
                 $('#message').addClass('success');
                 $('#message').text('Task Registration Success');
+                sessionStorage.removeItem("assign");
                 setTimeout(function () {
-                    window.location.href = './welcome.html';
+                    window.location.href = './admin_dash.html';
                     }, 1000);
                 }
             }
@@ -86,7 +103,7 @@ $(document).ready(function() {
                 time: time,
                 priority: pri,
                 email: user.email,
-                status: "pending"
+                status: "Pending"
                 };
 
                 // Find the index of the actual task in allTasks (not just userTasks)
@@ -135,6 +152,11 @@ $('#shedule').val(userTasks[edit.index].date+'T'+userTasks[edit.index].time);
 
 
 }
+$('#dashboard').click(function(){
+    sessionStorage.removeItem("assign");
+    location.href="../templates/admin_dash.html"
+});
+
 function sessionclear(){
         sessionStorage.clear();
         location.href='./index.html'

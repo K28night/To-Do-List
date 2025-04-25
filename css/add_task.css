@@ -9,165 +9,90 @@ body{
     color:#030303;
     letter-spacing: 2px;
 }
-.form{
-    display:flex;
-    align-items:center;
+.form {
+    display: flex;
     justify-content: center;
-    width:330px;
-    height: 460px;
-    position: absolute;
-    left:37%;
+    align-items: center;
+    padding: 20px;
     background-color: #F1EFEC;
-    border-radius: 14%;  
-}
-
-input[type="text"]{
-    margin-top: 2rem;
-}
-input{
-height: 1.5rem;
-border:0;
-border:#123458 thin solid;
-background-color: #F1EFEC;
-outline: none;
-font-size: 15px;
-height:30px;
-width:200px;
-border-radius: 10px;
-}
-input::placeholder{
-    padding-left: 16px;
-    margin-bottom: 20px;
-    font-family: "Andada Pro", serif;
-    font-optical-sizing: auto;
-    letter-spacing: 1px;
-}
-textarea::placeholder{
-    padding-left: 16px;
-    padding-top: 5px;
-}
-textarea{
-    /* margin-bottom: 2rem; */
-    height:100px;
-    width:240px;
-    font-family: "Andada Pro", serif;
-    font-optical-sizing: auto;
-    resize:none;/*user canot change the size of textarea*/
-    outline: none;
-    font-size: 15px;
-    border:0;
+    border-radius: 16px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  #form {
+    width: 100%;
+  }
+  
+  .grid-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .full-width {
+    grid-column: span 2;
+  }
+  
+  .center {
+    align-items: center;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  input, select, textarea {
+    font-size: 14px;
+    padding: 10px;
     border-radius: 10px;
-    background-color: #F1EFEC;
-    border:#030303 thin solid;
-}
-
-input[type="date"]{
-    background-color: #F1EFEC;
-
-    width:192px;
-    font-size: 15px;
-    border:#030303 thin solid;
-}
-input[type="submit"]{
-    background-color: #e4d2c1;
-    height: 40px;
-    letter-spacing: 1px;
-    padding:1.6rem;
-    font-style: normal;
-    width:192px;
-    margin-left: 37px;
-    border-radius:20px;
-}
-input[type="submit"]:hover{
-    background-color: #d1b39b;
-}
-#task_name{
-     position: absolute;
-     margin-top: 3rem;
-     left:11%
-}
-#task_dis{
-    position: absolute;
-    margin-top: 7.8rem;
-    font-family: "Andada Pro", serif;
-    font-optical-sizing: auto;
-    left:11%
-}
-#tname{
-    position: absolute;
-    top: 20%;
-    margin-left: 0;
-    left:12%
-}
-#dis{
-    position: absolute;
-    top: 49%;
-    margin-left: 0;
-    left: 13%;
-
-}
-select{
-    position: absolute;
-    margin-top: 14.5rem;
-    left: 12%;
-    top:0%;
+    border: 1px solid #ccc;
     outline: none;
+    background-color: #fff;
+  }
+  
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  input[type="submit"] {
+    background-color: #cebba9;
+    font-weight: 600;
+    width: 160px;
+    border-radius: 20px;
+    padding: 10px 0;
+    margin-left: -1.6rem;
+    cursor: pointer;
     border: none;
-    background-color: #F1EFEC;
-    border-radius: 9px;
-    font-family: "Andada Pro", serif;
-    font-optical-sizing: auto;
-    width: 240px;
-    font-size: 15px;
-    border: #030303 thin solid;
-    height: 44px;
-}
-#priority{
-    top:3%;
-}
-#pri{
-    position: absolute;
-    top: 66%;
-    margin-left: 0;
-    left: 12%;
-}
-#shedu{
-    position: absolute;
-    top: 83%;
-    margin-left: 0;
-    left: 13%;
-}
-#shedule{
-    position: absolute;
-    top: 70%;
-    margin-left: 0;
-    left: 12%;
-}
-#form{
-    height: 479px;
-    
-}
-#submit{
-    position: absolute;
-    position: absolute;
-    margin-top: 24.7rem;
-    left: -20%;
-    width: 130px;
-}
-small{
-    margin-left:0;
-}
-#form1{
-    height: 450px;
-    width: 21rem;
-    left:30.6rem;
+    transition: background-color 0.3s;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #d1b39b;
+  }
+  
+select{
+    padding: 1rem;
 }
 #message{
     position: absolute;
     top: 2%;
-    left: 3rem;
-    margin-left: 0rem;
+    left: 10rem;
+    font-size: 15px;
 }
 a#logout {
     cursor: pointer;
+}
+#dashboard{
+    cursor:pointer;
 }

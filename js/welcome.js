@@ -81,15 +81,15 @@ let comtask=0;
 let pentask=0;
 
 tasks.forEach(function(task) {
-    if (task.email == user.email) {
+    if (task.email == user.email && task.admin==user.admin) {
         userTasks.push(task);
     }
 });
 userTasks.forEach(function(task){
-    if(task.status=='completed'){
+    if(task.status.toLowerCase()=='completed'){
         comtask=comtask+1;
     }
-    if(task.status=='pending'){
+    if(task.status.toLowerCase()=='pending'){
         pentask=pentask+1;
        
     }
@@ -104,44 +104,39 @@ $('#ttask').text(userTasks.length)
 if (userTasks.length > 0) {
     userTasks.forEach(function(task, index) {
     var dindex=index+1;
-    taskListHTML += '<div class="tasks"><span id="name">';
+    taskListHTML += `<div class="tasks priority-${task.priority}"><span id="name" class="">`;
     taskListHTML += '<p id="task" class="task">';
     taskListHTML += `<span class="task-number">#${dindex}</span> `;
-    taskListHTML += '<span id="task_name">'+task.name + '</span></span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
+    taskListHTML += '<span id="task_name">'+task.name + '</span></span><span class="task-description">'+task.discription+'</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
     
-    const checkedClass = task.status === 'completed' ? 'checked' : '';
+    const checkedClass = task.status === 'Completed' ? 'checked' : '';
     taskListHTML += `<div id="status" title="Complete the task" class="status ${checkedClass}" data-index="${index}"></div>`;
-   
-      // ✏️ Edit Icon and ❌ Delete Icon (with custom classes and data-index for event handling)
-      taskListHTML += `<span class="edit" data-index="${index}" title="Edit"><i class="fa-solid fa-pen"></i></span>`;
-      taskListHTML += `<span class="delete" data-index="${index}" title="Delete"><i id='delete' class="fas fa-times danger"></i></span></p>`; 
-      taskListHTML += '</div>';
+
+    //   taskListHTML += `<span class="edit" data-index="${index}" title="Edit"><i class="fa-solid fa-pen"></i></span>`;
+    //   taskListHTML += `<span class="delete" data-index="${index}" title="Delete"><i id='delete' class="fas fa-times danger"></i></span>`; 
+      taskListHTML += '</p></div>';
 });
 
     $('.task-list').html(taskListHTML); 
 } else {
 
-    $('.task-list').html('<h2 id="notasks">You have no tasks added</h2><button id="notask" onclick="window.location.href=\'./add_task.html\'">Add Your Task</button>');
+    $('.task-list').html('<h2 id="notasks">You have no tasks added by admin</h2>');
     $('#add_task').css('display','none')
    
 }
 //status updation
+let updatestatus=true;
 $('#task-list').on('click', '.status', function() {
-    $(this).toggleClass('checked'); 
-    let confirmed = confirm("Are you sure you want to delete this task?");
+   
+    if (!($(this).hasClass('checked'))) {
+        $(this).toggleClass('checked');
+    let confirmed = confirm("Are you sure you want to chnage status this task? Ones you changed any other changes are not allowed");
     if (confirmed) {
     const index = $(this).data('index');
 
-    if ($(this).hasClass('checked')) {
-        userTasks[index].status = 'completed';
-        comtask = comtask + 1;
-        pentask = pentask - 1;
-    } else {
-        userTasks[index].status = 'pending';
-        pentask = pentask + 1;
-        comtask = comtask - 1;
-    }
-
+        userTasks[index].status = 'Completed';
+        
+   
     let allTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     allTasks = allTasks.map(task => {
         if (task.email === user.email && task.name === userTasks[index].name) {
@@ -150,7 +145,7 @@ $('#task-list').on('click', '.status', function() {
         return task;
     });
     localStorage.setItem("tasks", JSON.stringify(allTasks));
-   
+    updatestatus=false;
     if($('.status').hasClass('pen')) {
         $('#pend').trigger('click');
     } else if($('.status').hasClass('comp')) {
@@ -158,10 +153,16 @@ $('#task-list').on('click', '.status', function() {
     } else if($('.status').hasClass('total')) {
         $('#total').trigger('click');
     }
-    
+    pentask = pentask - 1;
+        comtask = comtask + 1;
     // Update task counters
     $('#completed').text(comtask);
     $('#pending').text(pentask);
+}
+
+} 
+else{
+    alert('Ones you completed,changes not allowed')
 }
 });
 
@@ -202,7 +203,7 @@ $('#task-list').on('click', '.edit', function() {
 $('#comp').click(function(){
     var completed=[];
     userTasks.forEach(function(task) {
-        if (task.status == 'completed') {
+        if (task.status == 'Completed') {
             completed.push(task);
         }
     });
@@ -214,15 +215,15 @@ $('#comp').click(function(){
             taskListHTML += '<div class="tasks"><span id="name">';
             taskListHTML += '<p id="task" class="task">';
             taskListHTML += `<span class="task-number">#${dindex}</span> `;
-            taskListHTML += '<span id="task_name">'+task.name + '</span></span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
+            taskListHTML += '<span id="task_name">'+task.name + '</span></span><span class="task-description" >'+task.discription+'</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
             
-            const checkedClass = task.status === 'completed' ? 'checked' : '';
+            const checkedClass = task.status === 'Completed' ? 'checked' : '';
             taskListHTML += `<div id="status" title="Complete the task" class="status ${checkedClass} comp" data-index="${index}"></div>`;
        
               // ✏️ Edit Icon and ❌ Delete Icon (with custom classes and data-index for event handling)
-              taskListHTML += `<span class="edit" data-index="${index}" title="Edit"><i class="fa-solid fa-pen"></i></span>`;
-              taskListHTML += `<span class="delete" data-index="${index}" title="Delete"><i id='delete' class="fas fa-times danger"></i></span></p>`; 
-              taskListHTML += '</div>';
+            //   taskListHTML += `<span class="edit" data-index="${index}" title="Edit"><i class="fa-solid fa-pen"></i></span>`;
+            //   taskListHTML += `<span class="delete" data-index="${index}" title="Delete"><i id='delete' class="fas fa-times danger"></i></span>`; 
+              taskListHTML += '</p></div>';
         });
     
         $('#task-list').html(taskListHTML); 
@@ -238,7 +239,7 @@ $('#comp').click(function(){
 $('#pend').click(function(){
     var pendingTasks = [];
     userTasks.forEach(function(task) {
-        if (task.status == 'pending') {
+        if (task.status.toLowerCase() == 'pending') {
             pendingTasks.push(task);
         }
     });
@@ -247,19 +248,19 @@ $('#pend').click(function(){
     let taskListHTML = ""; 
     if(pendingTasks.length>0){
         pendingTasks.forEach(function(task, index) {
-            var dindex=index+1;
+            var dindex = userTasks.findIndex(t => t.name === task.name && t.date === task.date && t.time === task.time);
             taskListHTML += '<div class="tasks"><span id="name">';
             taskListHTML += '<p id="task" class="task">';
             taskListHTML += `<span class="task-number">#${dindex}</span> `;
-            taskListHTML += '<span id="task_name">'+task.name + '</span></span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
+            taskListHTML += '<span id="task_name">'+task.name + '</span></span><span class="task-description" >'+task.discription+'</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
             
-            const checkedClass = task.status === 'completed' ? 'checked' : '';
-            taskListHTML += `<div id="status" title="Complete the task" class="status ${checkedClass} pen" data-index="${index}"></div>`;
+            const checkedClass = task.status === 'Completed' ? 'checked' : '';
+            taskListHTML += `<div id="status" title="Complete the task" class="status ${checkedClass} pen" data-index="${dindex}"></div>`;
        
               // ✏️ Edit Icon and ❌ Delete Icon (with custom classes and data-index for event handling)
-              taskListHTML += `<span class="edit" data-index="${index}" title="Edit"><i class="fa-solid fa-pen"></i></span>`;
-              taskListHTML += `<span class="delete" data-index="${index}" title="Delete"><i id='delete' class="fas fa-times danger"></i></span></p>`; 
-              taskListHTML += '</div>';
+            //   taskListHTML += `<span class="edit" data-index="${index}" title="Edit"><i class="fa-solid fa-pen"></i></span>`;
+            //   taskListHTML += `<span class="delete" data-index="${index}" title="Delete"><i id='delete' class="fas fa-times danger"></i></span>`; 
+              taskListHTML += '</p></div>';
         });
     
         $('#task-list').html(taskListHTML); 
@@ -280,15 +281,15 @@ $('#total').click(function(){
         taskListHTML += '<div class="tasks"><span id="name">';
         taskListHTML += '<p id="task" class="task">';
         taskListHTML += `<span class="task-number">#${dindex}</span> `;
-        taskListHTML += '<span id="task_name">'+task.name + '</span></span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
+        taskListHTML += '<span id="task_name">'+task.name + '</span></span><span class="task-description" >'+task.discription+'</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
         
-        const checkedClass = task.status === 'completed' ? 'checked' : '';
+        const checkedClass = task.status === 'Completed' ? 'checked' : '';
         taskListHTML += `<div id="status" title="Complete the task" class="status ${checkedClass} total" data-index="${index}"></div>`;
        
           // ✏️ Edit Icon and ❌ Delete Icon (with custom classes and data-index for event handling)
-          taskListHTML += `<span class="edit" data-index="${index}" title="Edit"><i class="fa-solid fa-pen"></i></span>`;
-          taskListHTML += `<span class="delete" data-index="${index}" title="Delete"><i id='delete' class="fas fa-times danger"></i></span></p>`; 
-          taskListHTML += '</div>';
+        //   taskListHTML += `<span class="edit" data-index="${index}" title="Edit"><i class="fa-solid fa-pen"></i></span>`;
+        //   taskListHTML += `<span class="delete" data-index="${index}" title="Delete"><i id='delete' class="fas fa-times danger"></i></span>`; 
+          taskListHTML += '</p></div>';
     });
     
         $('.task-list').html(taskListHTML); 

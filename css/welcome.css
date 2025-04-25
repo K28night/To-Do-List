@@ -136,18 +136,18 @@ p {
 #date{
     position: absolute;
     top: 2rem;
-    left: 17rem;
+    left: 26.5rem;
 }
 #time{
     margin-left: 4rem;
     position: absolute;
     top: 2rem;
-    left: 26rem;
+    left: 34rem;
 }
 #priority{
     position:absolute;
     top:2rem;
-    left: 34rem;
+    left: 42rem;
 }
 .fa-xmark {
     color: rgb(223, 75, 75);
@@ -179,7 +179,7 @@ margin-left: 4rem;
     border-radius: 17px;
     position: absolute;
     top: 37px;
-    left: 44rem;
+    left: 52rem;
     cursor: pointer;
     border: 2px solid #F1EFEC;
     transition: transform 0.5s ease;
@@ -224,7 +224,7 @@ margin-left: 4rem;
 #task_name{
     display:flex;
     width:200px;
-    margin-left: 3rem;
+    margin-left: 5rem;
 }
 .danger{
     color:rgb(194, 8, 8);
@@ -258,3 +258,58 @@ margin-left: 4rem;
     z-index: 10;
     left: -0.5rem;
 }
+/* .priority-low { background-color: #d4edda; }
+.priority-medium { background-color: #c4b297; }
+.priority-high { background-color: #D4C9BE; } */
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #d1c4a7; /* Matches task card */
+    color: #3c3c3c; /* A soft contrast for text */
+    font-weight: bold;
+    width: 56.5rem;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin: 20px 0 10px 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.header-item
+{
+    margin-left:2rem
+}
+span.header-item.prio {
+    position: absolute;
+    right: 14rem;
+}
+span.header-item.htime {
+    position: absolute;
+    right:22rem;
+}
+span.header-item.tdate {
+    position: absolute;
+    right: 26rem;
+}
+span.header-item.hname {
+    position: absolute;
+    left: 8rem;
+}
+span.header-item.hdate {
+    position: absolute;
+    left: 31rem;
+}
+span.header-item.hstatus {
+    position: absolute;
+    right: 8rem;
+}
+span.task-description {
+    position: absolute;
+    top: 2rem;
+    left: 14rem;
+    display: flex;
+        width: 200px;
+}
+.hdis{
+    position: absolute;
+    left: 19rem;
+}
+  
