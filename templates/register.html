@@ -19,7 +19,7 @@
         <div class="links">
             <a href="index.html">Home</a> 
             <a href="about.html">About</a>
-            <a  id="login" title="first you complete the registration">Dashboard</a></div>
+            <a id="login">Dashboard</a></div>
             <!-- <button class="login" onclick="window.location.href='login.html'" id="login">Login</button> -->
     </header>
     <div class="form-heading">
@@ -28,18 +28,18 @@
             
             <form method="POST" id="form">
                 <h2>Employee Register</h2>
-                <p id="registered">If you are registered then <a href="./login.html">Login</a></p>
+                <p id="registered"></p>
                 <small id="message"></small>
             
                 <div class="form-grid">
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Name" id="name" required>
-                        <small class="error" id="name_err">Enter the name of user</small>
+                        <small class="error" id="name_err">Enter the name of employee</small>
                     </div>
                     
                     <div class="form-group">
                         <input type="text" name="position" placeholder="Position" id="position" required>
-                        <small class="error" id="position_err">Position of user</small>
+                        <small class="error" id="position_err">designation of employee</small>
                     </div>
             
                     <div class="form-group">
@@ -49,11 +49,11 @@
             
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Username (Gmail)" id="username" required>
-                        <small class="error" id="email_error">Enter the Gmail as username</small>
+                        <small class="error" id="email_error">Enter the gmail as username</small>
                     </div>
             
                     <div class="form-group">
-                        <input type="password" id="pass" name="pass" title="password" placeholder="Password"required><br>
+                        <input type="password" id="pass" name="pass" title="password" placeholder="Password"required>
                         <small class="error" id="password_err">Password must be 8 characters</small>
                     </div>
             

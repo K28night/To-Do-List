@@ -1,0 +1,166 @@
+html, body {
+    background-color: #D4C9BE;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Andada Pro", serif;
+    font-optical-sizing: auto;
+}
+header {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #123458;
+}
+.logo {
+    margin-left: 1.3rem;
+    color: #D4C9BE;
+    text-decoration: none;
+}
+.logo h2 {
+    margin-top: 0.6rem;
+}
+.links {
+    margin-right: 2rem;
+    font-size: 18px;
+}
+header a {
+    text-decoration: none;
+    color: #D4C9BE;
+    padding-right: 1rem;
+    transition: color 0.2s ease;
+}
+.links a:hover {
+    color: #f1ede9;
+}
+.dashboard {
+    padding: 2rem;
+}
+.dashboard h2 {
+    color: #123458;
+    margin-bottom: 1.5rem;
+}
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+.card {
+    background-color: #F1EFEC;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+.card:hover {
+    box-shadow: none;
+    background-color: #e7dfd6;
+}
+.card h3 {
+    color: #123458;
+    margin-bottom: 1.5rem;
+}
+.card p {
+    color: #333;
+}
+
+.employees-section {
+padding: 2rem;
+font-family: "Andada Pro", serif;
+color: #123458;
+}
+
+#employeeSearch {
+width: 97%;
+padding: 10px 16px;
+margin-bottom: 1rem;
+border: 2px solid #c0af9c;
+border-radius: 10px;
+font-size: 16px;
+outline: none;
+box-shadow: 2px 2px 5px #00000026;
+font-family: "Andada Pro", serif;
+}
+
+.employees-section h2 {
+font-size: 28px;
+margin-bottom: 1.5rem;
+letter-spacing: 1px;
+}
+
+.employee-table {
+width: 100%;
+border-collapse: collapse;
+background-color: #f1efec;
+box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.15);
+border-radius: 10px;
+overflow: hidden;
+}
+
+.employee-table th,
+.employee-table td {
+padding: 12px 20px;
+text-align: left;
+border-bottom: 1px solid #d4c9be;
+}
+
+.employee-table th {
+background-color: #c0af9c;
+color: #fff;
+font-size: 16px;
+}
+
+.employee-table td {
+font-size: 15px;
+}
+
+.edit-btn,
+.delete-btn {
+padding: 6px 12px;
+font-size: 14px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+margin-right: 8px;
+font-family: "Andada Pro", serif;
+transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+background-color: #d0b47c;
+color: #123458;
+}
+
+.edit-btn:hover {
+background-color: #b69d5f;
+}
+
+.delete-btn {
+background-color: #c8655a;
+color: white;
+}
+
+.delete-btn:hover {
+background-color: #aa5c5c;
+}
+#Logout{
+cursor: pointer;
+letter-spacing: 1px;
+font-size: 18px;
+}
+.assign-btn{
+background-color: #28A77B;;
+color: white;
+border: none;
+margin-left: 1rem;
+margin-right:1rem;
+border-radius: 5px;
+width: 6rem;
+height: 27px;
+transition: background-color 0.3s ease;
+}
+.assign-btn:hover{
+background-color: #2e8566;
+}

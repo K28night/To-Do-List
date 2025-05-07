@@ -68,7 +68,7 @@ header a{
     box-shadow: 4px 4px 6px #f1efec80;
 }
 .login:hover{
-background-color: #F1EFEC;
+background-color: #e0d5ca;
 color:#204164;
 box-shadow:none;
 }
@@ -85,21 +85,20 @@ box-shadow:none;
     word-spacing: 2px;
     line-height: 1.5rem;
 }
-.intro button{
-    border:none;
-   
-    background-color:#c0af9c;
-    color:#123458;
-    height: 2.6rem;
-    width: 9rem;
+.intro button {
+    border: none;
+    background-color: #c0af9c;
+    color: #123458;
+    height: 3rem;
+    width: 10rem;
     font-family: "Andada Pro", serif;
     font-optical-sizing: auto;
     font-weight: bold;
-    font-size:16px;
-    border-radius:20px;
+    font-size: 16px;
+    border-radius: 24px;
     box-shadow: 4px 4px 6px #00000036;
     transition: all 0.4s ease;
-    margin-left: 2rem;
+    /* margin-left: 0rem; */
 }
 .intro button:hover{
     box-shadow: none;

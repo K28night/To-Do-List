@@ -55,10 +55,7 @@ input{
 .form h2{
     margin-left: 9rem;
 }
-small#password_err {
-    position: absolute;
-    bottom: 5rem;
-}
+
 #login{
     cursor: pointer;
 }

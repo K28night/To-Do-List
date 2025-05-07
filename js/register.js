@@ -98,9 +98,33 @@ $('#submit').click(function() {
         let confirm_password = $('#confirm_password').val();
         let position = $('#position').val();
         let department = $('#department').val();
-        if(name=="" && email=="" || pass=="" || position=="" || department=="" || confirm_password==""){
+        if(name=="" && email=="" && pass=="" && position=="" && department=="" && confirm_password==""){
             $('#registered').addClass('danger')
             $('#registered').text('First you fill out the form..!'); 
+        }
+        else if(name==""){
+            $('#registered').addClass('danger')
+            $('#registered').text('Fill out the name'); 
+        }
+        else if(email==""){
+            $('#registered').addClass('danger')
+            $('#registered').text('Fill out the email'); 
+        }
+        else if(position==""){
+            $('#registered').addClass('danger')
+            $('#registered').text('Fill out the position'); 
+        }
+        else if(department==""){
+            $('#registered').addClass('danger')
+            $('#registered').text('Fill out the department'); 
+        }
+        else if(pass==""){
+            $('#registered').addClass('danger')
+            $('#registered').text('Fill out the password'); 
+        }
+        else if(confirm_password==""){
+            $('#registered').addClass('danger')
+            $('#registered').text('Fill out the confirm_password'); 
         }
         else{
             var userData = {
@@ -177,27 +201,18 @@ $('#login').click(function(){
 });
 //edit employee
 if (sessionStorage.getItem('edit_employee')) {
-    var storedUser = sessionStorage.getItem("admin");
-    var user = JSON.parse(storedUser);
+    const user = JSON.parse(sessionStorage.getItem("admin"));
+    const editEmployee = JSON.parse(sessionStorage.getItem("edit_employee"));
+    const tasks = JSON.parse(localStorage.getItem("users")) || [];
 
-    var edit = sessionStorage.getItem("edit_employee");
-    var editEmployee = JSON.parse(edit);
+    // Access directly using original index
+    const employee = tasks[editEmployee.index];
 
-    var usertasks = localStorage.getItem("users");
-    var tasks = JSON.parse(usertasks) || []; 
-    var adminuser = [];
-
-    tasks.forEach(function(task) {
-        if (editEmployee.admin == user.username && task.email == editEmployee.tname) {
-            adminuser.push(task);
-        }
-    });
-
-    // Fill form with editEmployee data
-    $('#name').val(adminuser[editEmployee.index].name);
-    $('#username').val(adminuser[editEmployee.index].email);
-    $('#pass').val(adminuser[editEmployee.index].password);
-    pass=adminuser[editEmployee.index].password;
-    $('#position').val(adminuser[editEmployee.index].position);
-    $('#department').val(adminuser[editEmployee.index].department);
+    // Fill form fields
+    $('#name').val(employee.name);
+    $('#username').val(employee.email);
+    $('#pass').val(employee.password);
+    pass = employee.password;
+    $('#position').val(employee.position);
+    $('#department').val(employee.department);
 }

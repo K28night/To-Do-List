@@ -25,7 +25,7 @@
     width: 200px;
     height: 69px;
     border-radius: 30px;
-    background-color:#FFDDAB;
+    background-color:#f7ddb8;
     cursor: pointer;
     transition: all 0.5s ease-out;
 }
@@ -48,7 +48,7 @@ transform: translateY(-5px);
     transition: all 0.5s ease-out;
 }
 #comp{
-    background-color: #DCA06D;/*sectiion 3 completed tasks*/
+    background-color: #f0e0c6;/*sectiion 3 completed tasks*/
     cursor: pointer;
     transition: all 0.5s ease-out;
 }
@@ -119,7 +119,7 @@ button:hover{
 }
 .tasks {
     width: 59rem;
-    height: 5.5rem;
+    height: 5.7rem;
     background-color: #D4C9BE;
     margin-left: 1rem;
     margin-top: 1.6rem;
@@ -264,7 +264,7 @@ margin-left: 4rem;
 .task-header {
     display: flex;
     justify-content: space-between;
-    background-color: #d1c4a7; /* Matches task card */
+    background-color: #c0af9c; /* Matches task card */
     color: #3c3c3c; /* A soft contrast for text */
     font-weight: bold;
     width: 56.5rem;
@@ -279,11 +279,11 @@ margin-left: 4rem;
 }
 span.header-item.prio {
     position: absolute;
-    right: 14rem;
+    right: 13rem;
 }
 span.header-item.htime {
     position: absolute;
-    right:22rem;
+    right: 21.2rem;
 }
 span.header-item.tdate {
     position: absolute;
@@ -295,11 +295,11 @@ span.header-item.hname {
 }
 span.header-item.hdate {
     position: absolute;
-    left: 31rem;
+    left: 32rem;
 }
 span.header-item.hstatus {
     position: absolute;
-    right: 8rem;
+    right: 7.8rem;
 }
 span.task-description {
     position: absolute;
@@ -312,4 +312,7 @@ span.task-description {
     position: absolute;
     left: 19rem;
 }
-  
+h2#notasks {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}

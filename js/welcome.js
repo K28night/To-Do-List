@@ -106,7 +106,7 @@ if (userTasks.length > 0) {
     var dindex=index+1;
     taskListHTML += `<div class="tasks priority-${task.priority}"><span id="name" class="">`;
     taskListHTML += '<p id="task" class="task">';
-    taskListHTML += `<span class="task-number">#${dindex}</span> `;
+    taskListHTML += `<span class="task-number">${dindex}</span> `;
     taskListHTML += '<span id="task_name">'+task.name + '</span></span><span class="task-description">'+task.discription+'</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
     
     const checkedClass = task.status === 'Completed' ? 'checked' : '';
@@ -129,9 +129,10 @@ let updatestatus=true;
 $('#task-list').on('click', '.status', function() {
    
     if (!($(this).hasClass('checked'))) {
-        $(this).toggleClass('checked');
-    let confirmed = confirm("Are you sure you want to chnage status this task? Ones you changed any other changes are not allowed");
+    let confirmed = confirm("Are you sure you want to update the task status? This action cannot be undone.");
     if (confirmed) {
+        
+            $(this).toggleClass('checked');
     const index = $(this).data('index');
 
         userTasks[index].status = 'Completed';
@@ -166,39 +167,6 @@ else{
 }
 });
 
-//delete task
-$('#task-list').on('click', '.delete', function() {
-    let confirmed = confirm("Are you sure you want to delete this task?");
-    if (confirmed) {
-        let index = $(this).data('index');
-        let allTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        let user = JSON.parse(sessionStorage.getItem("user")) || {};
-
-        // Filter user-specific tasks to access the correct one by index
-        let userTasks = allTasks.filter(task => task.email === user.email);
-
-        // Filter out the task to be deleted
-        let updatedTasks = allTasks.filter((task) => {
-            return !(task.email === user.email && task.name === userTasks[index].name);
-        });
-
-        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-        location.reload();
-    }
-});
-
-//edit task
-$('#task-list').on('click', '.edit', function() {
-    let index = $(this).data('index');
-    var sessionedit = {
-        index: index,
-        tname: userTasks.name,
-        userTasks:userTasks
-        };
-        sessionStorage.setItem("edit", JSON.stringify(sessionedit));
-        window.location.href="../templates/add_task.html"
-});
- 
 //filter completed tasks
 $('#comp').click(function(){
     var completed=[];
@@ -214,7 +182,7 @@ $('#comp').click(function(){
             const dindex = index + 1; //
             taskListHTML += '<div class="tasks"><span id="name">';
             taskListHTML += '<p id="task" class="task">';
-            taskListHTML += `<span class="task-number">#${dindex}</span> `;
+            taskListHTML += `<span class="task-number">${dindex}</span> `;
             taskListHTML += '<span id="task_name">'+task.name + '</span></span><span class="task-description" >'+task.discription+'</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
             
             const checkedClass = task.status === 'Completed' ? 'checked' : '';
@@ -251,7 +219,7 @@ $('#pend').click(function(){
             var dindex = userTasks.findIndex(t => t.name === task.name && t.date === task.date && t.time === task.time);
             taskListHTML += '<div class="tasks"><span id="name">';
             taskListHTML += '<p id="task" class="task">';
-            taskListHTML += `<span class="task-number">#${dindex}</span> `;
+            taskListHTML += `<span class="task-number">${dindex}</span> `;
             taskListHTML += '<span id="task_name">'+task.name + '</span></span><span class="task-description" >'+task.discription+'</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
             
             const checkedClass = task.status === 'Completed' ? 'checked' : '';
@@ -280,7 +248,7 @@ $('#total').click(function(){
             var dindex=index+1;
         taskListHTML += '<div class="tasks"><span id="name">';
         taskListHTML += '<p id="task" class="task">';
-        taskListHTML += `<span class="task-number">#${dindex}</span> `;
+        taskListHTML += `<span class="task-number">${dindex}</span> `;
         taskListHTML += '<span id="task_name">'+task.name + '</span></span><span class="task-description" >'+task.discription+'</span><span id="date">' + task.date + '</span><span id="time">' + task.time + '</span><span id="priority">' + task.priority + '</span>';
         
         const checkedClass = task.status === 'Completed' ? 'checked' : '';
